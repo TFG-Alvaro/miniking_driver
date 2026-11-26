@@ -1,0 +1,4 @@
+bags/*.bag
+bags/*.bag.active
+__pycache__/
+*.pyc

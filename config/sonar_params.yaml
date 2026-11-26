@@ -1,0 +1,28 @@
+# Comunicación serie
+port: "/dev/ttyUSB0"
+baudrate: 115200
+
+# Configuración operativa del sonar Tritech MiniKing
+ensayo: "deteccion_objetos_lab"
+duracion: 0             # 0 = ejecución continua hasta Ctrl+C
+
+# Parámetros Acústicos y de Filtrado (Ajuste de nitidez)
+gain: 45                # Ganancia (0 - 100%). Bajar en recipientes pequeños
+ad_low: 20              # Umbral mínimo de ruido (0 - 255)
+ad_span: 180            # Contraste / rango dinámico (0 - 255)
+vos: 1482.0             # Velocidad del sonido (1482.0 agua dulce / 1500.0 agua mar)
+range_scale: 2          # Rango máximo en metros (entero en MiniKing: 1, 2, 5, 10...)
+
+# Resolución y Geometría de Barrido
+range_min: 0.05         # Distancia mínima visualizada en metros
+bins: 300               # Número de muestras por línea de eco (mayor = más detalle radial)
+resolution: "Medium"    # Paso angular: "Low", "Medium", "High", "Ultimate"
+left_lim_deg: -30.0     # Límite izquierdo del sector en grados (0° = frente)
+right_lim_deg: 30.0     # Límite derecho del sector en grados (0° = frente)
+continuous: false       # false = barrido sectorial ida/vuelta, true = giro 360° continuo
+inverted: false         # true si el sonar está montado boca abajo
+
+# Marcos de Referencia y Topics ROS
+frame_id: "sonar_link"
+scan_topic: "/sonar/scan"
+verbose: false          # true para depurar tramas SeaNet por consola

@@ -1,0 +1,22 @@
+<launch>
+    <arg name="rviz" default="true" />
+    <arg name="record_bag" default="false" />
+    <arg name="bag_prefix" default="ensayo" />
+
+    <!-- 1. Transformada estática (TF) -->
+    <node pkg="tf" type="static_transform_publisher" name="sonar_tf_broadcaster" 
+          args="0 0 0 0 0 0 map sonar_link 100" />
+
+    <!-- 2. Nodo driver C++ del Tritech MiniKing -->
+    <node pkg="miniking_driver" type="miniking_node" name="miniking_node" output="screen">
+        <rosparam command="load" file="$(find miniking_driver)/config/sonar_params.yaml" />
+    </node>
+
+    <!-- 3. Visualización opcional en RViz -->
+    <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" 
+          args="-d $(find miniking_driver)/rviz/miniking.rviz" />
+
+    <!-- 4. Grabación automática de rosbag -->
+    <node if="$(arg record_bag)" pkg="rosbag" type="record" name="sonar_bag_recorder"
+          args="-O $(find miniking_driver)/bags/$(arg bag_prefix) /sonar/scan /tf /tf_static" output="screen" />
+</launch>
