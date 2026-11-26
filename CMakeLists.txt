@@ -14,5 +14,5 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(miniking_node src/miniking_node.cpp)
-target_link_libraries(miniking_node ${catkin_LIBRARIES})
+add_executable(miniking_driver_node src/miniking_node.cpp)
+target_link_libraries(miniking_driver_node ${catkin_LIBRARIES})

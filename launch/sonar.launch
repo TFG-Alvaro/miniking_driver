@@ -8,7 +8,7 @@
           args="0 0 0 0 0 0 map sonar_link 100" />
 
     <!-- 2. Nodo driver C++ del Tritech MiniKing -->
-    <node pkg="miniking_driver" type="miniking_node" name="miniking_node" output="screen">
+    <node pkg="miniking_driver" type="miniking_driver_node" name="miniking_driver_node" output="screen">
         <rosparam command="load" file="$(find miniking_driver)/config/sonar_params.yaml" />
     </node>
 
